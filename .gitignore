@@ -1,0 +1,21 @@
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / debug dumps
+*.log
+netlog.json
+
+# Deps (если когда-то появятся)
+node_modules/
+
+# Vercel
+.vercel/
+
+# Build / temp
+.tmp/
+dist/

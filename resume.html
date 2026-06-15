@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stanislav Kaidash — Frontend Developer (AI Integrations)</title>
+  <meta name="description" content="Junior Frontend Developer. React/Next.js/TypeScript + Anthropic Claude API integrations. Portfolio: briefly-ai, Lumen, FutureTech." />
+  <meta property="og:title" content="Stanislav Kaidash — Frontend Developer (AI Integrations)" />
+  <meta property="og:description" content="Junior Frontend Developer. React/Next.js/TypeScript + Anthropic Claude API integrations. Portfolio: briefly-ai, Lumen, FutureTech." />
+  <meta property="og:type" content="profile" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #111111;
+      --bg-side:   #0a0a0a;
+      --accent:    #f0e040;
+      --text:      rgba(255,255,255,0.75);
+      --text-dim:  rgba(255,255,255,0.4);
+      --white:     #ffffff;
+      --divider:   rgba(240,224,64,0.2);
+      --ff: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #0a0a0a;
+      font-family: var(--ff);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Print button ── */
+    .print-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      padding: 10px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 6px;
+      z-index: 100;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .print-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── Page ── */
+    .page {
+      display: flex;
+      max-width: 794px;
+      min-height: 1123px;
+      margin: 24px auto;
+      background: var(--bg);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    /* ── Left column ── */
+    .col-main {
+      flex: 1 1 62%;
+      padding: 44px 36px 44px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ── Right sidebar ── */
+    .col-side {
+      flex: 0 0 38%;
+      background: var(--bg-side);
+      padding: 44px 28px 44px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      border-left: 1px solid var(--divider);
+    }
+
+    /* ── Header ── */
+    .resume-header {}
+    .resume-name {
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .resume-name strong {
+      font-weight: 700;
+    }
+    .resume-role {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 6px;
+    }
+    .resume-divider {
+      border: none;
+      border-top: 1px solid var(--divider);
+      margin-top: 16px;
+    }
+
+    /* ── Section ── */
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    /* ── Summary ── */
+    .summary-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .summary-list li {
+      padding-left: 14px;
+      position: relative;
+      color: var(--text);
+    }
+    .summary-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 10px;
+      top: 1px;
+    }
+
+    /* ── Projects ── */
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .project-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .project-subtitle {
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+    .project-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .project-bullets li {
+      padding-left: 14px;
+      position: relative;
+      color: var(--text);
+    }
+    .project-bullets li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: var(--text-dim);
+    }
+
+    /* ── Sidebar sections ── */
+    .side-section {}
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .contact-list li {
+      color: var(--text);
+      font-size: 12px;
+      word-break: break-all;
+    }
+    .contact-list a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .contact-list a:hover { color: var(--accent); }
+
+    .about-text {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .edu-school {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .edu-degree {
+      font-size: 11.5px;
+      color: var(--text);
+      margin-top: 2px;
+    }
+    .edu-year {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .skills-list li {
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    /* ── Print ── */
+    @media print {
+      :root {
+        --bg:      #ffffff;
+        --bg-side: #f5f5f5;
+        --accent:  #1a1a1a;
+        --text:    #333333;
+        --text-dim: #666666;
+        --white:   #000000;
+        --divider: rgba(0,0,0,0.15);
+      }
+      body { background: #fff; color: #333; }
+      .print-btn { display: none; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        max-width: 100%;
+        min-height: 100vh;
+      }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">⎙ Print / Save as PDF</button>
+
+  <div class="page">
+
+    <!-- ═══════════════ LEFT COLUMN ═══════════════ -->
+    <div class="col-main">
+
+      <header class="resume-header">
+        <div class="resume-name"><strong>Stanislav</strong> Kaidash</div>
+        <div class="resume-role">Frontend Developer · AI Integrations</div>
+        <hr class="resume-divider" />
+      </header>
+
+      <section>
+        <div class="section-title">Summary</div>
+        <ul class="summary-list">
+          <li>Junior Frontend Developer shipping production-ready React/Next.js features in TypeScript.</li>
+          <li>Integrates Claude API into live products: structured output via tool_use, SSE streaming, prompt caching, graceful degradation.</li>
+          <li>Comfortable with Supabase, Vercel Functions, testing (Vitest + RTL), a11y, and performance.</li>
+          <li>Actively looking for a junior/middle frontend role with an AI focus — available from June 2026.</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="section-title">Project Experience</div>
+        <div class="projects">
+
+          <div class="project">
+            <div class="project-title">briefly-ai — AI brief generator</div>
+            <div class="project-subtitle">Next.js 16 · TypeScript · Supabase · Claude API · Tailwind</div>
+            <ul class="project-bullets">
+              <li>Two-phase flow: insert → <code>after()</code> background extract + summarize → Supabase Realtime → <code>router.refresh()</code>.</li>
+              <li>tool_use with forced tool_choice for structured brief output; prompt caching on the system block.</li>
+              <li>linkedom instead of jsdom — jsdom breaks on Vercel runtime via an ESM-only transitive dep.</li>
+              <li>Live: briefly-ai-six.vercel.app · github.com/StasKaidash/briefly-ai</li>
+            </ul>
+          </div>
+
+          <div class="project">
+            <div class="project-title">Lumen — AI Focus Planner</div>
+            <div class="project-subtitle">HTML · SCSS · ES Modules · Claude API · Vercel Functions</div>
+            <ul class="project-bullets">
+              <li>Vanilla SaaS landing with a live AI feature — focus-session planner.</li>
+              <li>SSE streaming of tool_use arguments with incremental render via brace-depth JSON tracking.</li>
+              <li>In-memory per-IP rate-limit (5 req / 60 s), prompt caching, graceful demo-fallback with a reason-mapped badge.</li>
+              <li>Live: pet-inky-eight.vercel.app · github.com/StasKaidash/pet</li>
+            </ul>
+          </div>
+
+          <div class="project">
+            <div class="project-title">FutureTech — Blog + AI Summarizer</div>
+            <div class="project-subtitle">HTML · Sass · JavaScript · Claude API · Vercel Functions</div>
+            <ul class="project-bullets">
+              <li>Webpack-built static blog with a TL;DR button powered by Claude Sonnet 4.6.</li>
+              <li>POST endpoint with validation, 25 s timeout, graceful demo-fallback with an honest "Demo response · &lt;reason&gt;" badge.</li>
+              <li>Migrated from Netlify Functions to Vercel API Routes.</li>
+              <li>Live: future-tech-bay.vercel.app · github.com/StasKaidash/Future-Tech</li>
+            </ul>
+          </div>
+
+          <div class="project">
+            <div class="project-title">SK.store — Digital Products Storefront</div>
+            <div class="project-subtitle">React · TypeScript (strict) · SCSS · Vite · Vitest + RTL</div>
+            <ul class="project-bullets">
+              <li>Strict TS including <code>noUncheckedIndexedAccess</code>; DummyJSON API consumption.</li>
+              <li>Modal rendered through a React portal; cart, category filter, checkout flow.</li>
+              <li>Vitest + React Testing Library coverage on cart and filter logic.</li>
+              <li>github.com/StasKaidash/sk-store-react</li>
+            </ul>
+          </div>
+
+          <div class="project">
+            <div class="project-title">Todo React — SPA</div>
+            <div class="project-subtitle">React · TypeScript (strict) · Vite</div>
+            <ul class="project-bullets">
+              <li>Generic <code>useLocalStorage&lt;T&gt;</code> hook with type-safe persistence.</li>
+              <li>14/14 local unit tests + 10/10 live smoke tests passing.</li>
+              <li>Live: staskaidash.github.io/todo-react · github.com/StasKaidash/todo-react</li>
+            </ul>
+          </div>
+
+          <div class="project">
+            <div class="project-title">Forma Studio &amp; Agroton — Landings</div>
+            <div class="project-subtitle">HTML · SCSS · Vanilla JS</div>
+            <ul class="project-bullets">
+              <li>Forma Studio — Ukrainian architecture &amp; interior design portfolio; editorial UI, gallery carousel, 8-step process.</li>
+              <li>Agroton — corporate B2B site for one of Ukraine's largest agricultural producers (1.5 M tons/year, exports to 10+ countries).</li>
+              <li>Focus on adaptive layout, performance, and a11y.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ═══════════════ SIDEBAR ═══════════════ -->
+    <aside class="col-side">
+
+      <div class="side-section">
+        <div class="section-title">Contact</div>
+        <ul class="contact-list">
+          <li><a href="mailto:kaydashstas@gmail.com">kaydashstas@gmail.com</a></li>
+          <li><a href="https://t.me/staskaidash" target="_blank" rel="noopener noreferrer">@staskaidash</a></li>
+          <li><a href="https://github.com/StasKaidash" target="_blank" rel="noopener noreferrer">github.com/StasKaidash</a></li>
+        </ul>
+      </div>
+
+      <div class="side-section">
+        <div class="section-title">About Me</div>
+        <p class="about-text">
+          I build production-ready frontends and integrate Claude API into live products — clean architecture, honest fallbacks, and interfaces users actually enjoy.
+        </p>
+      </div>
+
+      <div class="side-section">
+        <div class="section-title">Education</div>
+        <div class="edu-school">NURE</div>
+        <div class="edu-degree">Master's Degree, Software Engineering</div>
+        <div class="edu-year">2024 · Kharkiv, Ukraine</div>
+      </div>
+
+      <div class="side-section">
+        <div class="section-title">AI Integrations</div>
+        <ul class="skills-list">
+          <li>Anthropic Claude API (Sonnet 4.6, Haiku 4.5)</li>
+          <li>tool_use with forced tool_choice</li>
+          <li>SSE streaming (<code>input_json_delta</code>)</li>
+          <li>Prompt caching (ephemeral)</li>
+          <li>Rate-limit-aware client</li>
+          <li>Graceful demo-fallback pattern</li>
+        </ul>
+      </div>
+
+      <div class="side-section">
+        <div class="section-title">Skills</div>
+        <ul class="skills-list">
+          <li><strong>Languages:</strong> HTML5, CSS3 / SCSS, JavaScript (ES2022+), TypeScript (strict, generics)</li>
+          <li><strong>Frameworks:</strong> React 18, Next.js 16 (App Router, Server Components, Server Actions, Proxy)</li>
+          <li><strong>Data:</strong> REST, Supabase (Postgres, Auth, Realtime, RLS), TanStack Query</li>
+          <li><strong>Styling:</strong> SCSS, Tailwind, BEM, CSS Modules, responsive, prefers-reduced-motion</li>
+          <li><strong>Testing:</strong> Vitest, React Testing Library</li>
+          <li><strong>Tooling:</strong> Vite, Webpack, Sass CLI, ESLint, Prettier, Git</li>
+          <li><strong>Deployment:</strong> Vercel (Functions, env-vars, Git integration), Netlify, GitHub Pages</li>
+          <li><strong>A11y:</strong> ARIA-live, role / aria-label, semantic HTML, keyboard nav</li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
+
+</body>
+</html>

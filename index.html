@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stas Kaidash — Frontend Developer</title>
+  <!-- C6: set lang synchronously before parse so screen readers get correct language -->
+  <script>document.documentElement.lang = localStorage.getItem('lang') || 'en';</script>
+  <meta name="description" content="Personal portfolio of Stanislav Kaidash, Frontend Developer" />
+  <meta property="og:title" content="Stas Kaidash — Frontend Developer" />
+  <meta property="og:description" content="Portfolio of Stanislav Kaidash, Frontend Developer" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stas Kaidash — Frontend Developer" />
+  <meta name="twitter:description" content="Portfolio of Stanislav Kaidash, Frontend Developer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- W1: SVG favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23f0e040'>S</text></svg>" />
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="nav__logo">Stas Kaidash</a>
+
+      <ul class="nav__links">
+        <li><a href="#about"    class="nav__link" data-en="About"    data-ru="Обо мне">About</a></li>
+        <li><a href="#skills"   class="nav__link" data-en="Skills"   data-ru="Навыки">Skills</a></li>
+        <li><a href="#projects" class="nav__link" data-en="Projects" data-ru="Проекты">Projects</a></li>
+        <li><a href="#contact"  class="nav__link" data-en="Contact"  data-ru="Контакты">Contact</a></li>
+      </ul>
+
+      <div class="nav__right">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+          <span class="lang-toggle__label lang-toggle__label--active" id="langEN">EN</span>
+          <span class="lang-toggle__sep">/</span>
+          <span class="lang-toggle__label" id="langRU">RU</span>
+        </button>
+        <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- mobile nav -->
+  <nav class="nav__mobile" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#about"    class="nav__link" data-en="About"    data-ru="Обо мне">About</a>
+    <a href="#skills"   class="nav__link" data-en="Skills"   data-ru="Навыки">Skills</a>
+    <a href="#projects" class="nav__link" data-en="Projects" data-ru="Проекты">Projects</a>
+    <a href="#contact"  class="nav__link" data-en="Contact"  data-ru="Контакты">Contact</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="hero section" id="home">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <p class="hero__greeting gsap-hero"
+           data-en="Hi, I'm" data-ru="Привет, я —">Hi, I'm</p>
+        <h1 class="hero__name gsap-hero">Stanislav Kaidash</h1>
+        <h2 class="hero__role gsap-hero"
+            data-en="Frontend Developer" data-ru="Фронтенд-разработчик">Frontend Developer</h2>
+        <p class="hero__bio gsap-hero-fade"
+           data-en="NURE graduate in Software Engineering, 2024. I build fast, accessible interfaces with React and TypeScript — focused on clean architecture, smooth UX, and code that scales."
+           data-ru="Выпускник ХНУРЭ по специальности «Программная инженерия», 2024. Создаю быстрые и доступные интерфейсы на React и TypeScript — с чистой архитектурой, плавным UX и кодом, который масштабируется.">
+          NURE graduate in Software Engineering, 2024. I build fast, accessible interfaces with React and TypeScript — focused on clean architecture, smooth UX, and code that scales.
+        </p>
+        <div class="hero__cta gsap-hero-fade">
+          <a href="#projects" class="btn btn--primary">
+            <span class="btn__text" data-en="View Projects" data-ru="Мои проекты">View Projects</span>
+            <div class="btn__hover" aria-hidden="true"></div>
+          </a>
+          <a href="#contact" class="btn btn--outline">
+            <span class="btn__text" data-en="Contact Me" data-ru="Связаться">Contact Me</span>
+            <div class="btn__hover" aria-hidden="true"></div>
+          </a>
+        </div>
+      </div>
+      <!-- avatar replaced by Three.js particle sphere -->
+    </div>
+    <a href="#about" class="hero__scroll" aria-label="Scroll down">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════════ -->
+  <section class="about section" id="about">
+    <div class="container">
+      <h2 class="section__title gsap-reveal"
+          data-en="About Me" data-ru="Обо мне">About Me</h2>
+      <div class="about__grid">
+        <div class="about__card">
+          <div class="about__icon" aria-hidden="true">🎓</div>
+          <h3 data-en="Education" data-ru="Образование">Education</h3>
+          <p data-en="NURE — Kharkiv National University of Radio Electronics. Master's Degree in Software Engineering, 2024."
+             data-ru="ХНУРЭ — Харьковский национальный университет радиоэлектроники. Магистр программной инженерии, 2024.">
+            NURE — Kharkiv National University of Radio Electronics. Master's Degree in Software Engineering, 2024.
+          </p>
+        </div>
+        <div class="about__card">
+          <div class="about__icon" aria-hidden="true">💻</div>
+          <h3 data-en="Focus" data-ru="Специализация">Focus</h3>
+          <p data-en="Frontend development — building responsive, accessible interfaces using HTML, CSS, JavaScript, React, and Vue."
+             data-ru="Фронтенд-разработка — создание адаптивных, качественных интерфейсов с использованием HTML, CSS, JavaScript, React и Vue.">
+            Frontend development — building responsive, accessible interfaces using HTML, CSS, JavaScript, React, and Vue.
+          </p>
+        </div>
+        <div class="about__card">
+          <div class="about__icon" aria-hidden="true">🚀</div>
+          <h3 data-en="Currently" data-ru="Сейчас">Currently</h3>
+          <p data-en="Open to junior frontend roles. Building portfolio projects to demonstrate skills and grow as a developer."
+             data-ru="Открыт к джуниор-вакансиям во фронтенде. Развиваю портфолио, чтобы показать свои навыки и расти как разработчик.">
+            Open to junior frontend roles. Building portfolio projects to demonstrate skills and grow as a developer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SKILLS
+  ═══════════════════════════════════════════════ -->
+  <section class="skills section" id="skills">
+    <div class="container">
+      <h2 class="section__title gsap-reveal"
+          data-en="Skills" data-ru="Навыки">Skills</h2>
+      <div class="skills__grid">
+
+        <div class="skill-group">
+          <h3 class="skill-group__title" data-en="Core" data-ru="Основные">Core</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--html"></span>HTML5</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--css"></span>CSS3</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--js"></span>JavaScript (ES6+)</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--ts"></span>TypeScript</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--scss"></span>Sass / SCSS</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group__title" data-en="Frameworks" data-ru="Фреймворки">Frameworks</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--react"></span>React</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--vue"></span>Vue</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--node"></span>Node.js</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--vite"></span>Vite</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group__title" data-en="Tools & Deploy" data-ru="Инструменты">Tools & Deploy</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--git"></span>Git & GitHub</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--claude"></span>Claude Code</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--deploy"></span>GitHub Pages</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--deploy"></span>Netlify</li>
+            <li class="skill-item"><span class="skill-item__icon skill-item__icon--rwd"></span>
+              <span data-en="Responsive Design" data-ru="Адаптивный дизайн">Responsive Design</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       PROJECTS
+  ═══════════════════════════════════════════════ -->
+  <section class="projects section" id="projects">
+    <div class="container">
+      <h2 class="section__title gsap-reveal"
+          data-en="Projects" data-ru="Проекты">Projects</h2>
+      <p class="section__subtitle gsap-reveal"
+         data-en="A selection of websites I designed and built from scratch."
+         data-ru="Подборка сайтов, которые я разработал самостоятельно с нуля.">
+        A selection of websites I designed and built from scratch.
+      </p>
+
+      <div class="projects__grid">
+
+        <!-- briefly-ai -->
+        <article class="project-card">
+          <div class="project-card__header project-card__header--todo">
+            <span class="project-card__emoji" aria-hidden="true">📝</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">briefly · AI brief generator</h3>
+            <p class="project-card__desc"
+               data-en="AI summarizer for saved links. Server Actions + Supabase Realtime keep the dashboard in sync, Claude Sonnet 4.6 (tool_use + prompt caching) turns an article into a structured brief with tags."
+               data-ru="AI-сжиматель сохранённых ссылок. Server Actions + Supabase Realtime обновляют дашборд, Claude Sonnet 4.6 (tool_use + prompt caching) превращает статью в структурированный brief с тегами.">
+              AI summarizer for saved links. Server Actions + Supabase Realtime keep the dashboard in sync, Claude Sonnet 4.6 (tool_use + prompt caching) turns an article into a structured brief with tags.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag">Next.js 16</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Claude API</span><span class="tag">Tailwind</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://briefly-ai-six.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+              <span class="btn__text" data-en="Live Demo" data-ru="Открыть">Live Demo</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+            <a href="https://github.com/StasKaidash/briefly-ai" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
+              <span class="btn__text">GitHub</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+          </div>
+        </article>
+
+        <!-- FutureTech -->
+        <article class="project-card">
+          <div class="project-card__header project-card__header--future">
+            <span class="project-card__emoji" aria-hidden="true">🤖</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">FutureTech</h3>
+            <p class="project-card__desc"
+               data-en="Static AI & emerging-tech blog with a live AI summarizer — a TL;DR button calls Claude Sonnet 4.6 with graceful demo-fallback when credits run out. 1 000+ articles, ebooks, podcasts, forum. Modular Sass architecture."
+               data-ru="Статичный блог об ИИ и технологиях + AI summarizer: кнопка TL;DR дёргает Claude Sonnet 4.6 с graceful demo-fallback при исчерпании кредитов. 1 000+ статей, книги, подкасты, форум. Модульная Sass-архитектура.">
+              Static AI & emerging-tech blog with a live AI summarizer — a TL;DR button calls Claude Sonnet 4.6 with graceful demo-fallback when credits run out. 1 000+ articles, ebooks, podcasts, forum. Modular Sass architecture.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag">HTML</span><span class="tag">Sass</span><span class="tag">JavaScript</span><span class="tag">Claude API</span><span class="tag">Vercel Functions</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://future-tech-bay.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+              <span class="btn__text" data-en="Live Demo" data-ru="Открыть">Live Demo</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+            <a href="https://github.com/StasKaidash/Future-Tech" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
+              <span class="btn__text">GitHub</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+          </div>
+        </article>
+
+        <!-- Forma Studio -->
+        <article class="project-card">
+          <div class="project-card__header project-card__header--forma">
+            <span class="project-card__emoji" aria-hidden="true">🏛️</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Forma Studio</h3>
+            <p class="project-card__desc"
+               data-en="Portfolio site for a Ukrainian architecture & interior design firm. Showcases services, project gallery with carousel, an 8-step client process, and multi-channel contact."
+               data-ru="Сайт-портфолио украинского бюро архитектуры и интерьерного дизайна. Услуги, галерея проектов с каруселью, 8-шаговый процесс работы и форма связи.">
+              Portfolio site for a Ukrainian architecture & interior design firm. Showcases services, project gallery with carousel, an 8-step client process, and multi-channel contact.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://forma1studio.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+              <span class="btn__text" data-en="Live Demo" data-ru="Открыть">Live Demo</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+            <a href="https://github.com/StasKaidash/forma-studio" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
+              <span class="btn__text">GitHub</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+          </div>
+        </article>
+
+        <!-- Agroton -->
+        <article class="project-card">
+          <div class="project-card__header project-card__header--agro">
+            <span class="project-card__emoji" aria-hidden="true">🌾</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Agroton</h3>
+            <p class="project-card__desc"
+               data-en="Corporate B2B site for one of Ukraine's largest agricultural producers. Highlights production achievements (1.5 M tons/year, exports to 10+ countries) and product categories."
+               data-ru="Корпоративный B2B-сайт одного из крупнейших агропроизводителей Украины. Производственные достижения (1,5 млн т/год, экспорт в 10+ стран) и товарные категории.">
+              Corporate B2B site for one of Ukraine's largest agricultural producers. Highlights production achievements (1.5 M tons/year, exports to 10+ countries) and product categories.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://agroton-start.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+              <span class="btn__text" data-en="Live Demo" data-ru="Открыть">Live Demo</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+            <a href="https://github.com/StasKaidash/agroton-start" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
+              <span class="btn__text">GitHub</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+          </div>
+        </article>
+
+        <!-- SK.store -->
+        <article class="project-card">
+          <div class="project-card__header project-card__header--skstore">
+            <span class="project-card__emoji" aria-hidden="true">🛍️</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">SK.store</h3>
+            <p class="project-card__desc"
+               data-en="Digital-products storefront — templates, guides & assets for frontend developers. Cart with add / remove / clear-all, category filter, checkout flow, and contact form. Global state managed via React Context + useReducer."
+               data-ru="Магазин цифровых продуктов — шаблоны, гайды и ассеты для фронтенд-разработчиков. Корзина с добавлением/удалением/очисткой, фильтр по категориям, оформление заказа и форма обратной связи. Состояние — React Context + useReducer.">
+              Digital-products storefront — templates, guides & assets for frontend developers. Cart with add / remove / clear-all, category filter, checkout flow, and contact form. Global state managed via React Context + useReducer.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">SCSS</span><span class="tag">Vite</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://staskaidash.github.io/sk-store-react/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+              <span class="btn__text" data-en="Live Demo" data-ru="Открыть">Live Demo</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+            <a href="https://github.com/StasKaidash/sk-store-react" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
+              <span class="btn__text">GitHub</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+          </div>
+        </article>
+
+        <!-- Todo React -->
+        <article class="project-card">
+          <div class="project-card__header project-card__header--todo">
+            <span class="project-card__emoji" aria-hidden="true">✅</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Todo React App</h3>
+            <p class="project-card__desc"
+               data-en="A minimal task-management SPA built with React and Vite. Features add, complete, and delete tasks with smooth animations and a custom dark-themed UI."
+               data-ru="Минималистичное React-приложение для управления задачами (SPA на Vite). Добавление, выполнение и удаление задач с анимациями и кастомным тёмным интерфейсом.">
+              A minimal task-management SPA built with React and Vite. Features add, complete, and delete tasks with smooth animations and a custom dark-themed UI.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag">React</span><span class="tag">Vite</span><span class="tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://staskaidash.github.io/todo-react/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+              <span class="btn__text" data-en="Live Demo" data-ru="Открыть">Live Demo</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+            <a href="https://github.com/StasKaidash/todo-react" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
+              <span class="btn__text">GitHub</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+          </div>
+        </article>
+
+        <!-- Lumen -->
+        <article class="project-card">
+          <div class="project-card__header project-card__header--lumen">
+            <span class="project-card__emoji" aria-hidden="true">🔆</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Lumen · AI Focus Planner</h3>
+            <p class="project-card__desc"
+               data-en="SaaS landing with a live AI feature. SSE streams tool_use arguments from Claude (incremental session render via JSON depth-tracking), per-IP rate-limit, prompt caching, and a graceful demo-fallback with an honest 'Demo response' badge."
+               data-ru="Landing-конструктор + живой AI-планер фокус-сессий. Stream через SSE из Claude (tool_use, prompt caching), per-IP rate-limit, graceful demo-fallback с честным бейджем «Demo response».">
+              SaaS landing with a live AI feature. SSE streams tool_use arguments from Claude (incremental session render via JSON depth-tracking), per-IP rate-limit, prompt caching, and a graceful demo-fallback with an honest 'Demo response' badge.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag">HTML</span><span class="tag">SCSS</span><span class="tag">ES Modules</span><span class="tag">Claude API</span><span class="tag">Vercel Functions</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://pet-inky-eight.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+              <span class="btn__text" data-en="Live Demo" data-ru="Открыть">Live Demo</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+            <a href="https://github.com/StasKaidash/pet" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
+              <span class="btn__text">GitHub</span>
+              <div class="btn__hover" aria-hidden="true"></div>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════════ -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <h2 class="section__title gsap-reveal"
+          data-en="Contact" data-ru="Контакты">Contact</h2>
+      <p class="section__subtitle gsap-reveal"
+         data-en="Feel free to reach out — I'm open to new opportunities."
+         data-ru="Буду рад связи — открыт к новым возможностям.">
+        Feel free to reach out — I'm open to new opportunities.
+      </p>
+
+      <div class="contact__links">
+        <a href="mailto:kaydashstas@gmail.com" class="contact-link">
+          <div class="contact-link__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="m2 7 10 7 10-7" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-link__label" data-en="Email" data-ru="Почта">Email</span>
+            <span class="contact-link__value">kaydashstas@gmail.com</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/StasKaidash" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <div class="contact-link__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.165 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-link__label">GitHub</span>
+            <span class="contact-link__value">StasKaidash</span>
+          </div>
+        </a>
+
+        <a href="https://t.me/staskaidash" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <div class="contact-link__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M21.93 3.24 2.62 10.9c-1.3.52-1.29 1.25-.24 1.57l4.9 1.53 11.34-7.16c.54-.33 1.03-.15.62.21L8.7 16.17l-.38 5.07c.55 0 .8-.25 1.1-.54l2.63-2.56 5.47 4.04c1.01.56 1.73.27 1.98-.93l3.59-16.9c.36-1.46-.56-2.12-2.16-1.11z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-link__label">Telegram</span>
+            <span class="contact-link__value">@staskaidash</span>
+          </div>
+        </a>
+
+        <a href="resume.html" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <div class="contact-link__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="9" y1="13" x2="15" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="9" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-link__label" data-en="CV" data-ru="Резюме">CV</span>
+            <span class="contact-link__value" data-en="View CV" data-ru="Открыть резюме">View CV</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p data-en="© 2026 Stanislav Kaidash. Built with HTML, CSS, JavaScript & React."
+         data-ru="© 2026 Станислав Кайдаш. Создано на HTML, CSS, JavaScript и React.">
+        © 2026 Stanislav Kaidash. Built with HTML, CSS, JavaScript &amp; React.
+      </p>
+    </div>
+  </footer>
+
+  <!-- C2: CDN libraries moved from <head> to avoid render-blocking -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/particles.js"></script>
+  <!-- S3: dynamic copyright year -->
+  <script>
+    (function() {
+      var y = new Date().getFullYear().toString();
+      var fp = document.querySelector('.footer p');
+      if (!fp) return;
+      fp.dataset.en = fp.dataset.en.replace('2026', y);
+      fp.dataset.ru = fp.dataset.ru.replace('2026', y);
+      fp.innerHTML = fp.innerHTML.replace('2026', y);
+    })();
+  </script>
+</body>
+</html>
