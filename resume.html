@@ -8,9 +8,13 @@
   <meta property="og:title" content="Stanislav Kaidash — Frontend Developer (AI Integrations)" />
   <meta property="og:description" content="Junior Frontend Developer. React/Next.js/TypeScript + Anthropic Claude API integrations. Portfolio: briefly-ai, Lumen, FutureTech." />
   <meta property="og:type" content="profile" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stanislav Kaidash — Frontend Developer (AI Integrations)" />
+  <meta name="twitter:description" content="Junior Frontend Developer. React/Next.js/TypeScript + Anthropic Claude API integrations." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23f0e040'>S</text></svg>" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -19,7 +23,7 @@
       --bg-side:   #0a0a0a;
       --accent:    #f0e040;
       --text:      rgba(255,255,255,0.75);
-      --text-dim:  rgba(255,255,255,0.4);
+      --text-dim:  rgba(255,255,255,0.6);
       --white:     #ffffff;
       --divider:   rgba(240,224,64,0.2);
       --ff: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -85,7 +89,6 @@
     }
 
     /* ── Header ── */
-    .resume-header {}
     .resume-name {
       font-size: 28px;
       font-weight: 400;
@@ -184,8 +187,6 @@
     }
 
     /* ── Sidebar sections ── */
-    .side-section {}
-
     .contact-list {
       list-style: none;
       display: flex;
@@ -238,25 +239,74 @@
       color: var(--text);
     }
 
-    /* ── Print ── */
+    /* ── Mobile (< 720px) — single column, no fixed width ── */
+    @media (max-width: 719px) {
+      .page {
+        flex-direction: column;
+        max-width: 100%;
+        min-height: auto;
+        margin: 0;
+        box-shadow: none;
+      }
+      .col-main {
+        flex: 1 1 auto;
+        padding: 32px 22px;
+        gap: 24px;
+      }
+      .col-side {
+        flex: 1 1 auto;
+        padding: 32px 22px;
+        border-left: none;
+        border-top: 1px solid var(--divider);
+        gap: 22px;
+      }
+      .print-btn {
+        top: 8px;
+        right: 8px;
+        padding: 7px 12px;
+        font-size: 10px;
+      }
+      .resume-name { font-size: 24px; }
+      body { font-size: 12.5px; }
+    }
+
+    /* ── Print — single column so page 2 has no empty sidebar ── */
     @media print {
       :root {
         --bg:      #ffffff;
-        --bg-side: #f5f5f5;
+        --bg-side: #ffffff;
         --accent:  #1a1a1a;
         --text:    #333333;
-        --text-dim: #666666;
+        --text-dim: #555555;
         --white:   #000000;
         --divider: rgba(0,0,0,0.15);
       }
-      body { background: #fff; color: #333; }
+      body { background: #fff; color: #333; font-size: 11.5px; }
       .print-btn { display: none; }
       .page {
+        display: block;
         margin: 0;
         box-shadow: none;
         max-width: 100%;
-        min-height: 100vh;
+        min-height: auto;
       }
+      .col-main {
+        padding: 18mm 16mm 8mm 16mm;
+        gap: 16px;
+      }
+      .col-side {
+        padding: 0 16mm 16mm 16mm;
+        background: transparent;
+        border-left: none;
+        border-top: 1px solid var(--divider);
+        margin-top: 18px;
+        padding-top: 16px;
+        gap: 14px;
+      }
+      .project { break-inside: avoid; page-break-inside: avoid; }
+      .side-section { break-inside: avoid; page-break-inside: avoid; }
+      .projects { gap: 12px; }
+      .section-title { margin-bottom: 8px; padding-bottom: 4px; }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>

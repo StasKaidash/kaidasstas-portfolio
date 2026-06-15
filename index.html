@@ -38,7 +38,7 @@
       </ul>
 
       <div class="nav__right">
-        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language (EN / RU)">
           <span class="lang-toggle__label lang-toggle__label--active" id="langEN">EN</span>
           <span class="lang-toggle__sep">/</span>
           <span class="lang-toggle__label" id="langRU">RU</span>
@@ -194,7 +194,7 @@
 
         <!-- briefly-ai -->
         <article class="project-card">
-          <div class="project-card__header project-card__header--todo">
+          <div class="project-card__header project-card__header--briefly">
             <span class="project-card__emoji" aria-hidden="true">📝</span>
           </div>
           <div class="project-card__body">
@@ -473,13 +473,13 @@
     </div>
   </footer>
 
-  <!-- C2: CDN libraries moved from <head> to avoid render-blocking -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/particles.js"></script>
+  <!-- C2/W1: CDN libraries deferred — preserve order, do not block parsing -->
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/particles.js"></script>
   <!-- S3: dynamic copyright year -->
   <script>
     (function() {

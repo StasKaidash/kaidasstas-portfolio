@@ -1,5 +1,8 @@
 gsap.registerPlugin(ScrollTrigger);
 
+/* respect OS-level reduced-motion preference */
+const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ─────────────────────────────────────────────────────────
    LENIS — smooth scroll, wired to GSAP ticker
 ───────────────────────────────────────────────────────── */
@@ -148,7 +151,20 @@ function splitLines(el) {
    ANIMATIONS — deferred until fonts load so getBoundingClientRect
    measures correctly and splitLines groups lines properly
 ───────────────────────────────────────────────────────── */
-document.fonts.ready.then(() => {
+/* C4: fonts.ready with 2s timeout — page reveals even if Google Fonts is slow */
+const fontsReady = Promise.race([
+  document.fonts.ready,
+  new Promise(resolve => setTimeout(resolve, 2000)),
+]);
+
+fontsReady.then(() => {
+
+  /* W6: prefers-reduced-motion — skip line-mask reveal, show plain text */
+  if (REDUCED_MOTION) {
+    document.querySelectorAll('.gsap-hero, .gsap-hero-fade, .gsap-reveal, .gsap-reveal-fade')
+      .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    return;
+  }
 
   /* ── Hero text reveal ── */
   const heroEls = document.querySelectorAll('.gsap-hero');

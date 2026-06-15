@@ -399,23 +399,6 @@ ul { list-style: none; }
   gap: 16px;
 }
 
-/* avatar */
-.hero__avatar {
-  display: none;
-}
-@media (min-width: 900px) { .hero__avatar { display: block; } }
-
-.avatar-placeholder {
-  width: 220px;
-  height: 220px;
-  border: 1px solid var(--clr-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--clr-gray-dim);
-}
-.avatar-placeholder svg { width: 80px; height: 80px; }
-
 /* scroll hint */
 .hero__scroll {
   position: absolute;
@@ -593,12 +576,13 @@ ul { list-style: none; }
   padding: 40px 32px 24px;
   border-bottom: 1px solid var(--clr-border);
 }
-.project-card__header--future { background: linear-gradient(135deg, rgba(167,139,250,0.08), transparent); }
-.project-card__header--forma  { background: linear-gradient(135deg, rgba(240,224,64,0.06), transparent); }
-.project-card__header--agro   { background: linear-gradient(135deg, rgba(74,222,128,0.06), transparent); }
-.project-card__header--todo   { background: linear-gradient(135deg, rgba(96,165,250,0.06), transparent); }
-.project-card__header--skstore{ background: linear-gradient(135deg, rgba(244,114,182,0.07), transparent); }
-.project-card__header--lumen  { background: linear-gradient(135deg, rgba(251,191,36,0.08), transparent); }
+.project-card__header--future  { background: linear-gradient(135deg, rgba(167,139,250,0.08), transparent); }
+.project-card__header--forma   { background: linear-gradient(135deg, rgba(240,224,64,0.06), transparent); }
+.project-card__header--agro    { background: linear-gradient(135deg, rgba(74,222,128,0.06), transparent); }
+.project-card__header--todo    { background: linear-gradient(135deg, rgba(96,165,250,0.06), transparent); }
+.project-card__header--skstore { background: linear-gradient(135deg, rgba(244,114,182,0.07), transparent); }
+.project-card__header--lumen   { background: linear-gradient(135deg, rgba(251,191,36,0.08), transparent); }
+.project-card__header--briefly { background: linear-gradient(135deg, rgba(45,212,191,0.08), transparent); }
 
 .project-card__emoji {
   font-size: 2.5rem;
@@ -736,7 +720,7 @@ ul { list-style: none; }
   font-size: 0.8rem;
   font-weight: 300;
   letter-spacing: 0.02em;
-  color: var(--clr-gray-dim);
+  color: var(--clr-gray);
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -835,13 +819,26 @@ body::after {
    RESPONSIVE — small screens (< 480px)
 ───────────────────────────────────────────────────────── */
 @media (max-width: 479px) {
+  /* tighten container so hero text + nav fit a 375px viewport */
+  .container { padding: 0 var(--sp-4); }
+
+  /* shorten the logo on mobile so EN/RU + burger fit */
+  .nav__logo { font-size: 0.85rem; letter-spacing: 0.04em; }
+  .nav__right { gap: 10px; }
+  .lang-toggle { font-size: 0.7rem; letter-spacing: 0.06em; }
+
   .hero__name {
-    font-size: clamp(2.5rem, 11vw, 4rem);
+    font-size: clamp(2rem, 9vw, 3rem);
+    letter-spacing: -0.03em;
   }
+  .hero__role { font-size: clamp(1.1rem, 4vw, 1.5rem); }
+  .hero__bio { font-size: 0.95rem; }
   .hero__cta {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    width: 100%;
   }
+  .hero .hero__cta { flex-direction: column; }
   .btn {
     width: 100%;
     justify-content: center;

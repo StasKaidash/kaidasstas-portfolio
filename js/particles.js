@@ -58,7 +58,7 @@
     colArr[i*3+1] = c.g;
     colArr[i*3+2] = c.b;
 
-    sizeArr[i] = 1.2 + Math.random() * 2.0; // 1.2–3.2px — visible but distinct
+    sizeArr[i] = 1.5 + Math.random() * 1.8; // 1.5–3.3px — distinct dots, not bloom
     randArr[i] = Math.random();
   }
 
@@ -116,7 +116,7 @@
         vAlpha = smoothstep(2.8, 1.0, dist) * (0.7 + aRand * 0.3);
 
         vec4 mv      = modelViewMatrix * vec4(p, 1.0);
-        gl_PointSize = aSize * (250.0 / -mv.z);
+        gl_PointSize = aSize * (90.0 / -mv.z);
         gl_Position  = projectionMatrix * mv;
       }
     `,
@@ -130,8 +130,8 @@
         float d  = length(uv);
         if (d > 0.5) discard;
 
-        /* hard-ish dot with soft edge — no glow bloom */
-        float a = smoothstep(0.5, 0.25, d);
+        /* sharp dot with minimal feather — discrete points, not bloom */
+        float a = smoothstep(0.5, 0.4, d);
         gl_FragColor = vec4(vColor, a * vAlpha * uOpacity);
       }
     `,
